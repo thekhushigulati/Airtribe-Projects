@@ -16,7 +16,7 @@ async function register (req, res) {
 async function login (req, res) {
     try {
         const { user, message, status, token } = await UserLoginService(req.body);
-        if (status === 404 || status === 401) {
+        if (status === 404 || status === 401 || status === 400) {
             res.status(status).send({
                 message
             });

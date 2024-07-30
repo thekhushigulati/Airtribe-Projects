@@ -1,19 +1,20 @@
 const express = require('express');
+const routes = express.Router();
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const cors = require("cors");
 dotenv.config();
 
 const userRoute = require('./routes/userRoute');
-// const newsInfo = require('./routes/newsRoute');
 const { verifyToken } = require("./middlewares/authJWT");
 const { getNews } = require("./controllers/newsController");
 
 const port = 3000;
 const app = express();
 app.use(cors());
-app.use(express.urlencoded({ extended: false }));
-app.use(express.json());
+app.use(routes);
+routes.use(express.urlencoded({ extended: false }));
+routes.use(express.json());
 
 //Connect to database
 const connectionString = process.env.MONGO_CONNECTION;
@@ -28,14 +29,17 @@ try {
     handleError(error);
 }
 
-app.get('/', (req, res)=>{
+app.get('/', (_, res)=>{
     res.status(200).send("Welcome to the Airtribe's News Aggregator App");
 });  
 
-app.use("/users", userRoute);
+routes.use("/users", userRoute);
 
-// app.get("/news", newsInfo);
-app.get('/news', verifyToken, getNews);
+routes.get('/news', verifyToken, getNews);
+
+app.use("*", function (_, res) {
+    res.status(404).json({ error: "This route does not exist!"});
+});
 
 app.listen(port, (err) => {
     if (err) {
@@ -45,6 +49,3 @@ app.listen(port, (err) => {
 });
 
 module.exports = app;
-
-
-//News API Key: 867dd7c1ae454a27b71c813be18895ed

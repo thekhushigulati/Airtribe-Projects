@@ -6,14 +6,16 @@ async function UserRegService(body) {
     try {
         const { name, password, email, preferences } = body;
         const hashedPassword = await bcrypt.hash(password, 10);
-        //calling DB to store user's name, password, email and preferences
         const user = new User({
             name,
             password: hashedPassword,
             email,
             preferences
         });
+
+        //calling DB to store user's name, password, email and preferences
         await user.save();
+        
         //responding to client request with registration successful message
         return {
             message: "User Registered successfully!!"
@@ -51,6 +53,7 @@ async function UserLoginService(body) {
         }, process.env.API_SECRET, {
             expiresIn: 86400
         });
+        
         //responding to client request with user profile, success message and access token
         return {
             status: 200,

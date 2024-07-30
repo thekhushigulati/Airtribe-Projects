@@ -23,6 +23,12 @@ async function verifyToken(req, res, next) {
         }
         User.findOne({_id: decodedString.id})
         .then(user => {
+          if(!user) {
+            req.user = undefined;
+            req.status = 404;
+            res.message = "User not found!";
+            return next();
+          }
           req.user = user;
           req.status = 200;
           res.message = "User preferences fetched successfully!";
