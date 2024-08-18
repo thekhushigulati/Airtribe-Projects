@@ -17,7 +17,7 @@ function verifyToken(req, res, next) {
     }
     jwt.verify(token, jwtSecret, (error, decodedString) => {
       // if (error && error.message === "jwt expired") {
-      //   return res.status(302).send("Token expired, redirect to login!");
+      //   return res.status(302).json("Token expired, redirect to login!");
       // }
       if (error) {
         req.user = undefined;
@@ -35,13 +35,13 @@ function verifyToken(req, res, next) {
           }
           req.user = user;
           req.status = 200;
-          res.message = 'User preferences fetched successfully!';
+          res.message = 'User found!';
           return next();
         })
         .catch((/* err */) => {
           req.user = undefined;
           req.status = 500;
-          res.message = 'Error fetching user preferences! '; // + err;
+          res.message = 'Error finding user! '; // + err;
           return next();
         });
     });

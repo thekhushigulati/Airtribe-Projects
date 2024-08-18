@@ -4,12 +4,13 @@ const User = require('../models/userModel');
 
 async function UserRegService(body) {
   try {
-    const { name, password, email } = body;
+    const { name, password, email, role } = body;
     const hashedPassword = await bcrypt.hash(password, 10);
     const user = new User({
       name,
       password: hashedPassword,
-      email
+      email,
+      role
     });
 
     await user.save();

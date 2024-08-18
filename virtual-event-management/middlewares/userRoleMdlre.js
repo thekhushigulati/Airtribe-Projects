@@ -1,4 +1,8 @@
 function verifyRole(req, res, next) {
+  const { message } = res;
+  if (req.user === undefined) {
+    return res.status(req.status).json({ message });
+  }
   if (req.user && req.user.role === 'organizer') {
     return next();
   }

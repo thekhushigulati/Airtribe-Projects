@@ -5,6 +5,7 @@ const { verifyRole } = require('../middlewares/userRoleMdlre');
 
 const router = express.Router();
 
+//Event Routes
 router
   .route('/')
   .get(verifyToken, verifyRole, eventController.getEvents)
@@ -12,8 +13,23 @@ router
 
 router
   .route('/:id')
-  .get(verifyToken, eventController.getEvent)
+  .get(verifyToken, verifyRole, eventController.getEvent)
   .put(verifyToken, verifyRole, eventController.updateEvent)
   .delete(verifyToken, verifyRole, eventController.deleteEvent);
+
+//Participant routes
+router.post('/:id/register', verifyToken, eventController.registerForEvent);
+router.get(
+  '/:id/participants',
+  verifyToken,
+  verifyRole,
+  eventController.getEventParticipants
+);
+router.delete(
+  '/:id/participants/:userId',
+  verifyToken,
+  verifyRole,
+  eventController.deleteParticipant
+);
 
 module.exports = router;

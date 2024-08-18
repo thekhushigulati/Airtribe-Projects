@@ -19,6 +19,11 @@ const eventSchema = new mongoose.Schema({
     type: String,
     required: [true, 'Please provide description of the event!']
   },
+  capacity: {
+    type: Number,
+    default: 10
+    // required: [true, 'Please specify the capacity of the event!']
+  },
   participants: [
     {
       type: mongoose.Schema.Types.ObjectId,
