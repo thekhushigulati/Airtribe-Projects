@@ -1,0 +1,213 @@
+{
+	"info": {
+		"_postman_id": "4413e245-808b-48f7-b348-897db9edb3e3",
+		"name": "Virtual Event Management App",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "36784732"
+	},
+	"item": [
+		{
+			"name": "Create User",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Test User\",\r\n    \"email\": \"testuser@test.com\",\r\n    \"password\": \"unique123\",\r\n    \"role\": \"attendee\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "127.0.0.1:8080/api/users/register"
+			},
+			"response": []
+		},
+		{
+			"name": "Login User",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"testuser@test.com\",\r\n    \"password\": \"unique123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "127.0.0.1:8080/api/users/login"
+			},
+			"response": []
+		},
+		{
+			"name": "Create Event",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2YzExMmZiZjUyMDU0MzdmZGNhY2ViZCIsImlhdCI6MTcyMzkyOTYyMCwiZXhwIjoxNzI0MDE2MDIwfQ.4SHwKBDhW8tyzwRJgFcM6vDCjHIca7Z5mIEwa2N3M4M",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Dextrous\",\r\n    \"description\":  \"This event provides an experience similar to placement process comprising of several rounds.\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "127.0.0.1:8080/api/events"
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Events",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2YzExMmZiZjUyMDU0MzdmZGNhY2ViZCIsImlhdCI6MTcyMzk4Njc5NSwiZXhwIjoxNzI0MDczMTk1fQ.df9px90Hq_Z4Ju-xdY10EDvnLAqXpS9rSE1e4u1lT1A",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "127.0.0.1:8080/api/events",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"events"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Event with Id",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2YzExMmZiZjUyMDU0MzdmZGNhY2ViZCIsImlhdCI6MTcyMzkyOTYyMCwiZXhwIjoxNzI0MDE2MDIwfQ.4SHwKBDhW8tyzwRJgFcM6vDCjHIca7Z5mIEwa2N3M4M",
+						"type": "text"
+					}
+				],
+				"url": "127.0.0.1:8080/api/events/66c10e6593aa9853b472a21a"
+			},
+			"response": []
+		},
+		{
+			"name": "Update Event",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2YzExMmZiZjUyMDU0MzdmZGNhY2ViZCIsImlhdCI6MTcyMzkyOTYyMCwiZXhwIjoxNzI0MDE2MDIwfQ.4SHwKBDhW8tyzwRJgFcM6vDCjHIca7Z5mIEwa2N3M4M",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"name\": \"New Dextrous Test\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "127.0.0.1:8080/api/events/66c1f8d84337db8dc47ef647"
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Event",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2YzExMmZiZjUyMDU0MzdmZGNhY2ViZCIsImlhdCI6MTcyMzkyOTYyMCwiZXhwIjoxNzI0MDE2MDIwfQ.4SHwKBDhW8tyzwRJgFcM6vDCjHIca7Z5mIEwa2N3M4M",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"name\": \"New Dextrous Test\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "127.0.0.1:8080/api/events/66c0f8f922aeb0007a842ae4"
+			},
+			"response": []
+		},
+		{
+			"name": "Register for an Event",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2YzFmYTMwMjgzNzkxYWE2MDk5NzcwZCIsImlhdCI6MTcyMzk4ODcwNywiZXhwIjoxNzI0MDc1MTA3fQ.SHpoI-08p-6-q2ONYtuLihzjEFictHe9zQ9GYQFi4c0",
+						"type": "text"
+					}
+				],
+				"url": "127.0.0.1:8080/api/events/66c1f8d84337db8dc47ef647/register"
+			},
+			"response": []
+		},
+		{
+			"name": "Get Participants for an Event",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2YzExMmZiZjUyMDU0MzdmZGNhY2ViZCIsImlhdCI6MTcyMzk4Njc5NSwiZXhwIjoxNzI0MDczMTk1fQ.df9px90Hq_Z4Ju-xdY10EDvnLAqXpS9rSE1e4u1lT1A",
+						"type": "text"
+					}
+				],
+				"url": "127.0.0.1:8080/api/events/66c1f8d84337db8dc47ef647/participants"
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Participant from an Event",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2YzExMmZiZjUyMDU0MzdmZGNhY2ViZCIsImlhdCI6MTcyMzk4Njc5NSwiZXhwIjoxNzI0MDczMTk1fQ.df9px90Hq_Z4Ju-xdY10EDvnLAqXpS9rSE1e4u1lT1A",
+						"type": "text"
+					}
+				],
+				"url": "127.0.0.1:8080/api/events/66c1f8d84337db8dc47ef647/participants"
+			},
+			"response": []
+		}
+	]
+}
